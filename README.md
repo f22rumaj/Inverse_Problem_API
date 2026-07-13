@@ -1,34 +1,43 @@
-# Nanomechanical Spectrometry API
+# Inverse_Problem_API: Bayesian Inference for Nanomechanical Spectrometry
 
-A high-performance Python package for solving the inverse problem in nanomechanical spectrometry. This API uses Bayesian inference to map experimentally measured resonant frequency shifts to the spatial position and physical properties (such as mass and stiffness) of adsorbates on nanomechanical resonators.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
+**Inverse_Problem_API** is a Python API designed to solve the inverse problem in nanomechanical spectrometry. It infers the physical properties of an adsorbing analyte—such as its mass and anisotropic stiffness tensor components—and its adsorption position from the relative frequency shifts of a mechanical resonator's vibrational modes.
 
-## 📖 Theory & Physics
-
-When a particle adsorbs onto a nanomechanical resonator, it induces a shift in the resonant frequencies of the device's vibrational modes. The fractional frequency shift for the $m$-th mode, $\Delta_m$, can be linearly approximated using a spatial A-matrix $A(\mathbf{r})$ and a parameter vector $\Theta$:
-
-$$\Delta_m \approx \sum_i A_{m,i}(\mathbf{r}) \Theta_i$$
-
-Here, $\mathbf{r}$ represents the spatial coordinates (1D or 2D) of the adsorbate, and $\Theta$ represents the physical parameters (e.g., mass, stiffness, curvature). 
-
-This API solves the resulting **inverse problem** using Bayesian inference, minimizing the Mahalanobis distance weighted by the experimental covariance matrix of the frequency noise to find the most probable position and properties of the adsorbate.
+Because experimental measurements are intrinsically stochastic due to noise, this API utilizes a **Bayesian probabilistic framework** to recover both the optimal parameter values and their associated uncertainties (marginal probability density functions).
 
 ---
 
-## ✨ Features
+## 📖 Theoretical Background
 
-* **Versatile Resonator Models:** Includes built-in analytical models (Cantilever, Doubly Clamped Beam, Membrane, String) and a `CustomResonator` class to ingest 1D or 2D Finite Element Method (FEM) mode shapes and strains.
-* **Batch Processing:** Seamlessly process single measurements or large batches of high-throughput experimental data.
-* **Robust Solvers:** Choose between a highly optimized CPU-based Profile Likelihood solver or a GPU-accelerated Brute Force solver for rigorous global minimum searches.
-* **Memory Management:** Dynamically chunks parameter grids during brute-force operations to prevent Out-Of-Memory (OOM) errors.
-* **Visualization Suite:** Built-in plotting tools to visualize spatial and parameter probability marginals.
+When an analyte adsorbs onto a mechanical resonator, it shifts the resonance frequencies of the device. For a general 2D resonator in the mass and stiffness sensing regime, the relative frequency shift of the $n$-th mode is given by:
+
+$$\frac{\Delta f_n}{f_{n0}} = -\frac{M_a}{2M}\vert{}\Psi_n(x,y)\vert{}^2 + \frac{K_{mqrs}}{2K}\frac{\varepsilon_{mq}^{(n)}(x,y)\varepsilon_{rs}^{(n)}(x,y)}{\alpha_n^4}$$
+
+Where:
+* $M_a$ is the mass of the analyte.
+* $K_{mqrs}$ are the components of the analyte's stiffness tensor.
+* $\Psi_n(x,y)$ and $\varepsilon^{(n)}(x,y)$ are the mode shapes and in-plane strains at the point of contact.
+
+This API reconstructs these physical parameters using **Profile Likelihood**. Instead of calculating an impossibly massive joint probability space (Brute Force), the engine mathematically projects the physical parameters ($\Theta$) as normal distributions over a dynamically refined, iterative spatial grid. This allows for the rapid resolution of up to 7 interacting parameters (Mass + 6 Stiffness components) on a standard CPU.
 
 ---
 
-## ⚙️ Installation
+## 🚀 Features
 
-1. Clone the repository to your local machine:
+* **Advanced Solvers:** Choose between `profile_likelihood` (fast, highly scalable, CPU-optimized iterative refinement) and `brute_force` algorithms.
+* **1D & 2D Devices:** Built-in analytical models for `Cantilevers`, `Doubly clamped beams`, `Strings`and `Rectangular membranes`.
+* **Custom Resonators:** Supply your own FEM-derived mode shapes ($\Psi$) and strain fields ($\varepsilon_{xx}, \varepsilon_{yy}, \varepsilon_{xy}$) to model arbitrary device geometries.
+* **Batch Processing:** Seamlessly process single frequency-jump events or massive datasets of continuous measurements.
+* **Visualization:** Built-in dynamic plotting class to extract spatial contour maps and 1D probability density functions (PDFs) for all parameters.
+
+---
+
+## 🛠️ Installation
+
+You can install this package directly from GitHub into your local Python or Conda environment.
+
+1. Activate your environment:
    ```bash
-   git clone [https://github.com/YOUR-USERNAME/nanomechanical-spectrometry-api.git](https://github.com/YOUR-USERNAME/nanomechanical-spectrometry-api.git)
-   cd nanomechanical-spectrometry-api
+   conda activate my_env
