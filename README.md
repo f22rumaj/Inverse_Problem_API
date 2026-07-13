@@ -15,6 +15,8 @@ When an analyte adsorbs onto a mechanical resonator, it shifts the resonance fre
 $$\frac{\Delta f_n}{f_{n0}} = -\frac{M_a}{2M}\vert{}\Psi_n(x,y)\vert{}^2 + \frac{K_{mqrs}}{2K}\varepsilon_{mq}^{(n)}(x,y)\varepsilon_{rs}^{(n)}(x,y)$$
 
 Where:
+* $M$ is the mass of the resonator.
+* $K$ is the stiffness of the resonator.
 * $M_a$ is the mass of the analyte.
 * $K_{mqrs}$ are the components of the analyte's stiffness tensor.
 * $\Psi_n(x,y)$ and $\varepsilon^{(n)}(x,y)$ are the mode shapes and in-plane strains (normalized by the square of the eigenvalue) at the point of contact.
