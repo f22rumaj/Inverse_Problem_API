@@ -41,10 +41,11 @@ You can install this package directly from GitHub into your local Python or Cond
 Here is a complete example of how to configure a device, input experimental data, run the solver, and plot the results.
 
 **1. Import the API**
+```
 import numpy as np
 from iproblem import measurements, solvers
 from iproblem.devices import CantileverBeam
-
+```
 **2. Define the Resonator & Parameter Bounds**
 Initialize your device and define the bounds of the parameter space you want to explore.
 
