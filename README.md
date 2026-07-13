@@ -1,7 +1,6 @@
 # Inverse_Problem_API: Bayesian Inference for Nanomechanical Spectrometry
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Inverse_Problem_API** is a Python API designed to solve the inverse problem in nanomechanical spectrometry. It infers the physical properties of an adsorbing analyte—such as its mass and anisotropic stiffness tensor components—and its adsorption position from the relative frequency shifts of a mechanical resonator's vibrational modes.
 
