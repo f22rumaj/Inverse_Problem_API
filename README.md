@@ -48,7 +48,7 @@ from iproblem.devices import CantileverBeam
 ```
 **2. Define the Resonator & Parameter Bounds**
 Initialize your device and define the bounds of the parameter space you want to explore.
-
+```
 # Initialize a 1D Cantilever using the first 3 modes
 resonator = devices.CantileverBeam(modes=3)
 
@@ -60,32 +60,44 @@ bounds = {
 }
 
 pgrids = [np.linspace(b['limits'][0], b['limits'][1], b['points']) for b in bounds.values()]
+```
 
 **3. Load Measurement Data**
 Input the relative frequency shifts ($\Delta f / f$) and the experimental covariance matrix (noise).
 
+```
 # Example: 1 measurement across 3 modes
-freq_shifts = np.array(array([[ -6.51826997, -66.23883745, -25.88523613]])) 
-covariance_matrix = (np.eye(3) * 0.1)**2
+sigma = 0.1
+freqs_shifts = np.asarray([[  8.64707471,   5.36683501,   2.38447922],
+       [ -0.81818077, -49.70348839, -57.56146848]]) 
+covariance_matrix = (np.eye(3) * sigma)**2
 
 data = measurements.Measurement(freq_shifts=freq_shifts, covariance_matrix=covariance_matrix)
+```
 
 **4. Run the Inverse Solver**
 Pass the configuration to the engine. The solver dynamically zooms into the optimal spatial coordinates and isolates the physical parameters.
 
+```
 # Initialize the engine
 solver = solvers.InverseSolver(resonator=resonator, method='profile_likelihood')
 
 # Solve
 results_obj = solver.run(measurement=data, position_grids=xgrid, pgrids=pgrids)
+```
 
 **5. Visualize the Results**
-Use the built-in Results object to instantly generate publication-ready marginal distribution plots.
+Use the built-in Results object to get optimal parameters, marginals and to instantly generate publication-ready marginal distribution plots.
+
+```
+# Get optimal parameaters and marginals
+opt_param = results_obj.optimal_parameters
+marg = results_obj.marg
 
 # Plot the spatial and physical marginals for the first measurement
 results_obj.plot_single_measurement(index=0)
 
 # If analyzing batch measurements, plot the aggregated statistical sums
 results_obj.plot_aggregated_measurements()
-
+```
 
