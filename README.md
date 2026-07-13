@@ -12,12 +12,12 @@ Because experimental measurements are intrinsically stochastic due to noise, thi
 
 When an analyte adsorbs onto a mechanical resonator, it shifts the resonance frequencies of the device. For a general 2D resonator in the mass and stiffness sensing regime, the relative frequency shift of the $n$-th mode is given by:
 
-$$\frac{\Delta f_n}{f_{n0}} = -\frac{M_a}{2M}\vert{}\Psi_n(x,y)\vert{}^2 + \frac{K_{mqrs}}{2K}\frac{\varepsilon_{mq}^{(n)}(x,y)\varepsilon_{rs}^{(n)}(x,y)}{\alpha_n^4}$$
+$$\frac{\Delta f_n}{f_{n0}} = -\frac{M_a}{2M}\vert{}\Psi_n(x,y)\vert{}^2 + \frac{K_{mqrs}}{2K}\varepsilon_{mq}^{(n)}(x,y)\varepsilon_{rs}^{(n)}(x,y)$$
 
 Where:
 * $M_a$ is the mass of the analyte.
 * $K_{mqrs}$ are the components of the analyte's stiffness tensor.
-* $\Psi_n(x,y)$ and $\varepsilon^{(n)}(x,y)$ are the mode shapes and in-plane strains at the point of contact.
+* $\Psi_n(x,y)$ and $\varepsilon^{(n)}(x,y)$ are the mode shapes and in-plane strains (normalized by the square of the eigenvalue) at the point of contact.
 
 This API reconstructs these physical parameters using a **Bayesian probabilistic framework**. The engine mathematically projects the physical parameters ($\Theta$) as normal distributions over a dynamically refined, iterative spatial grid. This allows for the rapid resolution of up to 7 interacting parameters (Mass + 6 Stiffness components) on a standard CPU.
 
