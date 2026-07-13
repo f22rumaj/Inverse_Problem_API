@@ -39,6 +39,13 @@ This API reconstructs these physical parameters using a **Bayesian probabilistic
 
 You can install this package directly from GitHub into your local Python or Conda environment.
 
+1. Activate your conda environment
+
+2. Install via pip:
+```
+pip install git+[https://github.com/f22rumaj/Inverse_Problem_Project.git](https://github.com/f22rumaj/Inverse_Problem_Project.git)
+```
+
 ## 💻 Quick Start Guide
 Here is a complete example of how to configure a device, input experimental data, run the solver, and plot the results.
 
