@@ -47,7 +47,7 @@ You can install the package directly from GitHub into your Python or Conda envir
 2. Install the package using pip:
 
 ```bash
-pip install git+https://github.com/f22rumaj/Inverse_Problem_Project.git
+pip install git+https://github.com/f22rumaj/Inverse_Problem_API.git
 ```
 
 ---
