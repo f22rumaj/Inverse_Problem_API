@@ -5,7 +5,7 @@ from tqdm.auto import tqdm
 from scipy.signal import find_peaks, peak_widths
 from scipy.ndimage import label
 from .results import Results
-from .measurement import Measurement
+from .measurements import Measurement
 try:
     import cupy as cp
     cp.zeros(1)
