@@ -94,7 +94,9 @@ class Results:
             fig.delaxes(axs[j])
 
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+
+        return fig, axs
 
     def plot_aggregated_measurements(self):
         """
@@ -140,4 +142,6 @@ class Results:
             fig.delaxes(axs[j])
 
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+
+        return fig, axs
