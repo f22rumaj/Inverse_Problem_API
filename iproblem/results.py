@@ -79,10 +79,10 @@ class Results:
             prob_p = marg_m[f'marg_{p_name}']
             
             ax.plot(p_grid, prob_p, 'b-', label='Marginal PDF')
-            ax.axvline(opt_m[p_name], color='g', linestyle=':', linewidth=2, label=f'Opt: {opt_m[p_name]:.2f}')
+            ax.axvline(opt_m[p_name], color='g', linestyle=':', linewidth=2, label=f'Opt: {opt_m[p_name]:.2e}')
             
             if true_values and p_name in true_values:
-                ax.axvline(true_values[p_name], color='r', linestyle='--', label=f'True: {true_values[p_name]:.2f}')
+                ax.axvline(true_values[p_name], color='r', linestyle='--', label=f'True: {true_values[p_name]:.2e}')
                 
             ax.set_title(f"{p_name.replace('Theta_', '')} Marginal")
             ax.set_xlabel('Parameter Value')
